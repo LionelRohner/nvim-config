@@ -22,6 +22,7 @@ TODO: The Code Diagnostic doesn't work very well in Quarto.
 
 ## Use surround
 
+```
 | Old Text                  | Command   | New Text              |
 | ------------------------- | --------- | --------------------- |
 | surr\*ound_words          | ysiw)     | (surround_words)      |
@@ -32,6 +33,7 @@ TODO: The Code Diagnostic doesn't work very well in Quarto.
 | 'change quot\*es'         | cs'"      | "change quotes"       |
 | <b>or tag\* types</b>     | csth1<CR> | <h1>or tag types</h1> |
 | delete(functi\*on calls)  | dsf       | function calls        |
+```
 
 # Documentation
 
