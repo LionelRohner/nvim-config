@@ -1,15 +1,49 @@
 <!-- mtoc-start -->
 
-* [💤 LazyVim](#-lazyvim)
-  * [Quarto (Python)](#quarto-python)
-  * [Use surround](#use-surround)
-* [Documentation](#documentation)
+- [💤 LazyVim](#-lazyvim)
+  - [Custom Keymaps](#custom-keymaps)
+    - [**Navigation**](#navigation)
+    - [**Python**](#python)
+    - [**Quarto & Markdown**](#quarto--markdown)
+  - [Quarto (Python)](#quarto-python)
+  - [Use surround](#use-surround)
+- [Documentation](#documentation)
 
 <!-- mtoc-end -->
 
 # 💤 LazyVim
 
 This is a basic LazyVim setup that has been optimised primarily for use as a Python dev environment.
+
+## Custom Keymaps
+
+### **Navigation**
+
+| Keymap       | Description           |
+| ------------ | --------------------- |
+| `<leader>än` | Open a new tab        |
+| `<leader>äc` | Close the current tab |
+| `<leader>äd` | Open the Dashboard    |
+
+---
+
+### **Python**
+
+| Keymap       | Description                                                                                                                                       |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `<leader>üp` | Insert a formatted f-string `print(f"{var} : {var}")` for the yanked variable. Automatically detects the variable name and preserves indentation. |
+
+---
+
+### **Quarto & Markdown**
+
+| Keymap       | Description                                         |
+| ------------ | --------------------------------------------------- |
+| `<leader>öp` | Preview the current Quarto document                 |
+| `<leader>öd` | Toggle LSP diagnostics (enable/disable)             |
+| `<leader>öt` | Insert a Table of Contents (ToC) for Markdown files |
+
+---
 
 ## Quarto (Python)
 
