@@ -21,6 +21,31 @@ vim.api.nvim_set_keymap(
 )
 
 ----------------------------------------------------
+--- Python
+----------------------------------------------------
+
+-- Create f-string type print of highlighted variable
+
+vim.keymap.set("n", "<leader>üp", function()
+  local line = vim.api.nvim_get_current_line()
+
+  -- capture indentation
+  local indent = line:match("^(%s*)")
+
+  -- extract variable before =
+  local var = line:match("^%s*([%w_%.]+)%s*=")
+
+  if not var then
+    print("No variable assignment found")
+    return
+  end
+
+  local print_line = indent .. string.format('print(f"%s : {%s}")', var, var)
+
+  vim.api.nvim_put({ print_line }, "l", true, true)
+end, { desc = "Print variable debug" })
+
+----------------------------------------------------
 --- Quarto and Markdown Stuff
 ----------------------------------------------------
 
