@@ -61,3 +61,17 @@ end, { silent = true, noremap = true, desc = "[P] Toggle LSP-Diagnostic" })
 
 --- ToC for Markdown
 vim.keymap.set("n", "<leader>öt", ":Mtoc i[nsert]<CR>", { noremap = true, silent = true, desc = "[P] Add ToC" })
+
+--- Add LateX math equation with alignment environment
+vim.keymap.set("n", "<leader>öm", function()
+  vim.api.nvim_put({
+    "$$",
+    "\\begin{align*}",
+    "y &= x",
+    "\\end{align*}",
+    "$$",
+  }, "l", true, true)
+
+  -- Move cursor into the empty line inside align*
+  vim.cmd("normal! 2k$")
+end, { desc = "Insert LaTeX align* math block" })
