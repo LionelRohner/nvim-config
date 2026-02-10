@@ -6,18 +6,18 @@
 --- Navigation
 ----------------------------------------------------
 
-vim.api.nvim_set_keymap("n", "<leader>än", ":tabnew<CR>", { noremap = true, silent = true, desc = "[P] Open new tab" })
+vim.api.nvim_set_keymap("n", "<leader>än", ":tabnew<CR>", { noremap = true, silent = true, desc = "Open new tab" })
 vim.api.nvim_set_keymap(
   "n",
   "<leader>äc",
   ":tabclose:<CR>",
-  { noremap = true, silent = true, desc = "[P] Close current tab" }
+  { noremap = true, silent = true, desc = "Close current tab" }
 )
 vim.api.nvim_set_keymap(
   "n",
   "<leader>äd",
   ":Dashboard<CR>",
-  { noremap = true, silent = true, desc = "[P] Open Dashboard" }
+  { noremap = true, silent = true, desc = "Open Dashboard" }
 )
 
 ----------------------------------------------------
@@ -52,15 +52,15 @@ end, { desc = "Print variable debug" })
 --- Quarto
 local quarto = require("quarto")
 quarto.setup()
-vim.keymap.set("n", "<leader>öp", quarto.quartoPreview, { silent = true, noremap = true, desc = "[P] QuartoPreview" })
+vim.keymap.set("n", "<leader>öp", quarto.quartoPreview, { silent = true, noremap = true, desc = "QuartoPreview" })
 
 --- Disable LSP Diagnostic disabling
 vim.keymap.set("n", "<leader>öd", function()
   vim.diagnostic.enable(not vim.diagnostic.is_enabled())
-end, { silent = true, noremap = true, desc = "[P] Toggle LSP-Diagnostic" })
+end, { silent = true, noremap = true, desc = "Toggle LSP-Diagnostic" })
 
 --- ToC for Markdown
-vim.keymap.set("n", "<leader>öt", ":Mtoc i[nsert]<CR>", { noremap = true, silent = true, desc = "[P] Add ToC" })
+vim.keymap.set("n", "<leader>öt", ":Mtoc i[nsert]<CR>", { noremap = true, silent = true, desc = "Add ToC" })
 
 --- Add LateX math equation with alignment environment
 vim.keymap.set("n", "<leader>öm", function()
@@ -74,4 +74,4 @@ vim.keymap.set("n", "<leader>öm", function()
 
   -- Move cursor into the empty line inside align*
   vim.cmd("normal! 2k$")
-end, { desc = "Insert LaTeX align* math block" })
+end, { desc = "Insert aligned LaTeX math env" })
