@@ -75,3 +75,16 @@ vim.keymap.set("n", "<leader>öm", function()
   -- Move cursor into the empty line inside align*
   vim.cmd("normal! 2k$")
 end, { desc = "Insert aligned LaTeX math env" })
+
+--- Add Quarto Callout Block
+--- https://quarto.org/docs/authoring/callouts.html
+vim.keymap.set("n", "<leader>öc", function()
+  vim.api.nvim_put({
+    '::: {.callout-note collapse="false"}',
+    "",
+    ":::",
+  }, "l", true, true)
+
+  -- Move cursor into the empty line inside align*
+  vim.cmd("normal! 2k$")
+end, { desc = "Insert Callout Block" })
