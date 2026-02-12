@@ -55,7 +55,7 @@ quarto.setup()
 vim.keymap.set("n", "<leader>öp", quarto.quartoPreview, { silent = true, noremap = true, desc = "QuartoPreview" })
 
 --- Disable LSP Diagnostic disabling
-vim.keymap.set("n", "<leader>öd", function()
+vim.keymap.set("n", "<leader>öl", function()
   vim.diagnostic.enable(not vim.diagnostic.is_enabled())
 end, { silent = true, noremap = true, desc = "Toggle LSP-Diagnostic" })
 
@@ -88,3 +88,16 @@ vim.keymap.set("n", "<leader>öc", function()
   -- Move cursor into the empty line inside align*
   vim.cmd("normal! 2k$")
 end, { desc = "Insert Callout Block" })
+
+--- Add div tag for center alignment
+
+vim.keymap.set("n", "<leader>öd", function()
+  vim.api.nvim_put({
+    '<div style="text-align: center;">',
+    "",
+    "<div>",
+  }, "l", true, true)
+
+  -- Move cursor into the empty line inside align*
+  vim.cmd("normal! 2k$")
+end, { desc = "Insert centered <div> tag" })
