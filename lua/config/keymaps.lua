@@ -24,6 +24,9 @@ vim.api.nvim_set_keymap(
 --- Python
 ----------------------------------------------------
 
+-- Run current script
+vim.keymap.set("n", "<leader>üü", ":w<CR>:!python %<CR>", { noremap = true, desc = "Run Current Python Script" })
+
 -- Create f-string type print of highlighted variable
 
 vim.keymap.set("n", "<leader>üp", function()
