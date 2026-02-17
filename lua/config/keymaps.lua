@@ -6,13 +6,18 @@
 --- Navigation
 ----------------------------------------------------
 
+-- Open new tab
 vim.api.nvim_set_keymap("n", "<leader>än", ":tabnew<CR>", { noremap = true, silent = true, desc = "Open new tab" })
+
+-- Close current tab
 vim.api.nvim_set_keymap(
   "n",
   "<leader>äc",
   ":tabclose:<CR>",
   { noremap = true, silent = true, desc = "Close current tab" }
 )
+
+-- Open Dashboard
 vim.api.nvim_set_keymap(
   "n",
   "<leader>äd",
@@ -25,7 +30,10 @@ vim.api.nvim_set_keymap(
 ----------------------------------------------------
 
 -- Run current script
-vim.keymap.set("n", "<leader>üü", ":w<CR>:!python %<CR>", { noremap = true, desc = "Run Current Python Script" })
+vim.keymap.set("n", "<leader>üü", function()
+  vim.cmd("write")
+  vim.cmd("split | terminal python %")
+end, { noremap = true, desc = "Run Current Python Script" })
 
 -- Create f-string type print of highlighted variable
 
