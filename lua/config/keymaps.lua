@@ -56,6 +56,24 @@ vim.keymap.set("n", "<leader>üp", function()
   vim.api.nvim_put({ print_line }, "l", true, true)
 end, { desc = "Print variable debug" })
 
+--TODO: Wrap this into which-key notation
+-- Run all tests
+vim.keymap.set("n", "<leader>üta", function()
+  vim.cmd("write")
+  local root = require("lazyvim.util").root()
+  Snacks.terminal("cd " .. root .. " && poetry run pytest tests", {
+    cwd = root,
+  })
+end, { desc = "Run pytest folder (poetry)" })
+
+-- Run current test file
+vim.keymap.set("n", "<leader>ütt", function()
+  vim.cmd("write")
+  local root = require("lazyvim.util").root()
+  local file = vim.fn.expand("%")
+  Snacks.terminal("cd " .. root .. " && poetry run pytest " .. file, { cwd = root })
+end, { desc = "Run pytest file (poetry" })
+
 ----------------------------------------------------
 --- Quarto and Markdown Stuff
 ----------------------------------------------------
