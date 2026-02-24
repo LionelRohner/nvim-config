@@ -32,11 +32,12 @@ vim.api.nvim_set_keymap(
 -- Run current script
 vim.keymap.set("n", "<leader>üü", function()
   vim.cmd("write")
-  vim.cmd("split | terminal python %")
-end, { noremap = true, desc = "Run Current Python Script" })
+  vim.cmd("split | terminal poetry run python %")
+end, { noremap = true, desc = "Run Current Python Script (Poetry)" })
 
 -- Create f-string type print of highlighted variable
 
+-- TODO: Also use which-key for the next two funcs
 vim.keymap.set("n", "<leader>üp", function()
   local line = vim.api.nvim_get_current_line()
 
@@ -55,6 +56,19 @@ vim.keymap.set("n", "<leader>üp", function()
 
   vim.api.nvim_put({ print_line }, "l", true, true)
 end, { desc = "Print variable debug" })
+
+vim.keymap.set("n", "<leader>üo", function()
+  -- Save the current cursor position
+  local pos = vim.api.nvim_win_get_cursor(0)
+  -- Get the current line
+  local line = vim.api.nvim_get_current_line()
+  -- Surround the line with print()
+  local new_line = "print(" .. line .. ")"
+  -- Set the new line
+  vim.api.nvim_set_current_line(new_line)
+  -- Restore the cursor position (adjust column if needed)
+  vim.api.nvim_win_set_cursor(0, { pos[1], pos[2] + 6 }) -- +6 to account for 'print('
+end, { desc = "Surround line with Python print()" })
 
 --TODO: Wrap this into which-key notation
 -- Run all tests
