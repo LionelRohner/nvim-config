@@ -30,6 +30,7 @@ vim.api.nvim_set_keymap(
 ----------------------------------------------------
 
 -- Run current script
+-- TODO: The split screen as is, feels a bit awkward
 vim.keymap.set("n", "<leader>üü", function()
   vim.cmd("write")
   vim.cmd("split | terminal poetry run python %")
