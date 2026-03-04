@@ -1,17 +1,17 @@
 <!-- mtoc-start -->
 
-- [💤 LazyVim](#-lazyvim)
-  - [Custom Keymaps](#custom-keymaps)
-    - [**Navigation**](#navigation)
-    - [**Python**](#python)
-    - [**Quarto & Markdown**](#quarto--markdown)
-  - [Quarto (Python)](#quarto-python)
-  - [Use surround](#use-surround)
-- [Documentation](#documentation)
+* [💤 RoboVim](#-robovim)
+  * [Custom Keymaps](#custom-keymaps)
+    * [**Navigation**](#navigation)
+    * [**Python**](#python)
+    * [**Quarto & Markdown**](#quarto--markdown)
+  * [Quarto (Python)](#quarto-python)
+  * [Use surround](#use-surround)
+* [Documentation](#documentation)
 
 <!-- mtoc-end -->
 
-# 💤 LazyVim
+# 💤 RoboVim
 
 This is a basic LazyVim setup that has been optimised primarily for use as a Python dev environment.
 
@@ -29,9 +29,13 @@ This is a basic LazyVim setup that has been optimised primarily for use as a Pyt
 
 ### **Python**
 
-| Keymap       | Description                                                                                                                                       |
-| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `<leader>üp` | Insert a formatted f-string `print(f"{var} : {var}")` for the yanked variable. Automatically detects the variable name and preserves indentation. |
+| Keymap        | Description                                                                                                                                       |
+| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `<leader>üü`  | Run the current Python file using Poetry                                                                                                          |
+| `<leader>üta` | Run all tests in the project using pytest (Poetry)                                                                                                |
+| `<leader>ütt` | Run the current test file using pytest (Poetry)                                                                                                   |
+| `<leader>üp`  | Insert a formatted f-string `print(f"{var} : {var}")` for the yanked variable. Automatically detects the variable name and preserves indentation. |
+| `<leader>üo`  | Surround the current line with `print()`                                                                                                          |
 
 ---
 
@@ -40,8 +44,11 @@ This is a basic LazyVim setup that has been optimised primarily for use as a Pyt
 | Keymap       | Description                                         |
 | ------------ | --------------------------------------------------- |
 | `<leader>öp` | Preview the current Quarto document                 |
-| `<leader>öd` | Toggle LSP diagnostics (enable/disable)             |
+| `<leader>öl` | Toggle LSP diagnostics (enable/disable)             |
 | `<leader>öt` | Insert a Table of Contents (ToC) for Markdown files |
+| `<leader>öm` | Insert an aligned LaTeX math environment            |
+| `<leader>öc` | Insert a Quarto callout block                       |
+| `<leader>öd` | Insert a centered `<div>` tag                       |
 
 ---
 
