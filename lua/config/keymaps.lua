@@ -30,14 +30,29 @@ vim.api.nvim_set_keymap(
 ----------------------------------------------------
 
 -- Run current script
--- TODO: The split screen as is, feels a bit awkward
+local Terminal = require("toggleterm.terminal").Terminal
+
+local python = Terminal:new({
+  direction = "horizontal",
+  size = 15,
+  close_on_exit = false,
+})
+
 vim.keymap.set("n", "<leader>üü", function()
+  if vim.bo.filetype ~= "python" then
+    print("Not a Python file")
+    return
+  end
+
   vim.cmd("write")
-  vim.cmd("split | terminal poetry run python %")
-end, { noremap = true, desc = "Run Current Python Script (Poetry)" })
+  local file = vim.fn.expand("%:p")
+
+  python:shutdown() -- kill previous job if running
+  python.cmd = "poetry run python " .. file
+  python:toggle()
+end, { desc = "Run Current Python File" })
 
 -- Create f-string type print of highlighted variable
-
 -- TODO: Also use which-key for the next two funcs
 vim.keymap.set("n", "<leader>üp", function()
   local line = vim.api.nvim_get_current_line()
