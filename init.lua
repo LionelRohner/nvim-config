@@ -4,9 +4,6 @@ require("config.lazy")
 -- Load custom keybindings after plugins are set up
 require("config.keymaps")
 
--- Use catppuccin
--- vim.cmd.colorscheme("catppuccin")
-
 -- Visualize qmd as markdown
 vim.filetype.add({
   extension = {
