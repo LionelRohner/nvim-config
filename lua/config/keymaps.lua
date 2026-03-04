@@ -29,7 +29,7 @@ vim.api.nvim_set_keymap(
 --- Python
 ----------------------------------------------------
 
--- Run current script
+-- Setup ToggleTerm variables
 local Terminal = require("toggleterm.terminal").Terminal
 
 local python = Terminal:new({
@@ -38,6 +38,13 @@ local python = Terminal:new({
   close_on_exit = false,
 })
 
+local pytest = Terminal:new({
+  direction = "horizontal",
+  size = 15,
+  close_on_exit = false,
+})
+
+-- Run current script
 vim.keymap.set("n", "<leader>üü", function()
   if vim.bo.filetype ~= "python" then
     print("Not a Python file")
@@ -51,6 +58,32 @@ vim.keymap.set("n", "<leader>üü", function()
   python.cmd = "poetry run python " .. file
   python:toggle()
 end, { desc = "Run Current Python File" })
+
+--TODO: Wrap this into which-key notation
+-- Run all tests
+vim.keymap.set("n", "<leader>üta", function()
+  vim.cmd("write")
+
+  local root = require("lazyvim.util").root()
+
+  pytest:shutdown()
+  pytest.dir = root
+  pytest.cmd = "poetry run pytest tests"
+  pytest:toggle()
+end, { desc = "Run pytest folder (poetry)" })
+
+-- Run current test file
+vim.keymap.set("n", "<leader>ütt", function()
+  vim.cmd("write")
+
+  local root = require("lazyvim.util").root()
+  local file = vim.fn.expand("%:p")
+
+  pytest:shutdown()
+  pytest.dir = root
+  pytest.cmd = "poetry run pytest " .. file
+  pytest:toggle()
+end, { desc = "Run pytest file (poetry)" })
 
 -- Create f-string type print of highlighted variable
 -- TODO: Also use which-key for the next two funcs
@@ -85,24 +118,6 @@ vim.keymap.set("n", "<leader>üo", function()
   -- Restore the cursor position (adjust column if needed)
   vim.api.nvim_win_set_cursor(0, { pos[1], pos[2] + 6 }) -- +6 to account for 'print('
 end, { desc = "Surround line with Python print()" })
-
---TODO: Wrap this into which-key notation
--- Run all tests
-vim.keymap.set("n", "<leader>üta", function()
-  vim.cmd("write")
-  local root = require("lazyvim.util").root()
-  Snacks.terminal("cd " .. root .. " && poetry run pytest tests", {
-    cwd = root,
-  })
-end, { desc = "Run pytest folder (poetry)" })
-
--- Run current test file
-vim.keymap.set("n", "<leader>ütt", function()
-  vim.cmd("write")
-  local root = require("lazyvim.util").root()
-  local file = vim.fn.expand("%")
-  Snacks.terminal("cd " .. root .. " && poetry run pytest " .. file, { cwd = root })
-end, { desc = "Run pytest file (poetry" })
 
 ----------------------------------------------------
 --- Quarto and Markdown Stuff
