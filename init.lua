@@ -5,7 +5,7 @@ require("config.lazy")
 require("config.keymaps")
 
 -- Use catppuccin
-vim.cmd.colorscheme("catppuccin")
+-- vim.cmd.colorscheme("catppuccin")
 
 -- Visualize qmd as markdown
 vim.filetype.add({

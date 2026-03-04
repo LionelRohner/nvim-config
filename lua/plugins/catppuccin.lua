@@ -1,3 +1,8 @@
+if true then
+  return {}
+end
+
+-- BYPASS catppuccin
 return {
   {
     "catppuccin/nvim",
