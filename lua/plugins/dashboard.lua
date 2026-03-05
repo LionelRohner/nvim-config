@@ -15,10 +15,9 @@ return {
              █████   █████▒▒██████  ████████ ▒▒██████     ▒▒███      █████ █████▒███ █████           
             ▒▒▒▒▒   ▒▒▒▒▒  ▒▒▒▒▒▒  ▒▒▒▒▒▒▒▒   ▒▒▒▒▒▒       ▒▒▒      ▒▒▒▒▒ ▒▒▒▒▒ ▒▒▒ ▒▒▒▒▒            
                                                                                          
-                                                                                         
       ]]
 
-    header = string.rep("\n", 6) .. header .. "\n\n 💤 Based on LazyVim 💤\n"
+    header = string.rep("\n", 6) .. header .. "\n 💤 Based on LazyVim 💤\n\n"
 
     return {
       theme = "doom",
