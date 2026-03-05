@@ -34,7 +34,7 @@ local Terminal = require("toggleterm.terminal").Terminal
 
 local python = Terminal:new({
   direction = "horizontal",
-  size = 15,
+  size = 25,
   close_on_exit = false,
 })
 
@@ -106,6 +106,7 @@ vim.keymap.set("n", "<leader>üp", function()
   vim.api.nvim_put({ print_line }, "l", true, true)
 end, { desc = "Print variable debug" })
 
+-- Simple f-print
 vim.keymap.set("n", "<leader>üo", function()
   -- Save the current cursor position
   local pos = vim.api.nvim_win_get_cursor(0)
@@ -119,6 +120,35 @@ vim.keymap.set("n", "<leader>üo", function()
   vim.api.nvim_win_set_cursor(0, { pos[1], pos[2] + 6 }) -- +6 to account for 'print('
 end, { desc = "Surround line with Python print()" })
 
+vim.keymap.set("n", "<leader>üi", function()
+  -- Get current line and cursor position
+  local line = vim.api.nvim_get_current_line()
+  local row, col = unpack(vim.api.nvim_win_get_cursor(0))
+  local linenr = row
+
+  -- Capture indentation
+  local indent = line:match("^(%s*)")
+
+  -- Extract the expression under the cursor (Python syntax)
+  -- This regex matches most Python expressions, including parentheses and brackets
+  local expr = line:match("([%w_%.%[%]\"'%.%(%):]+)")
+
+  -- If no expression found, try to get the word under cursor
+  if not expr then
+    local word = vim.fn.expand("<cword>")
+    if word == "" then
+      print("No expression found under cursor")
+      return
+    end
+    expr = word
+  end
+
+  -- Build the print line with indentation
+  local print_line = indent .. string.format("print(f'Line %d: {%s}')", linenr, expr)
+
+  -- Insert the print line below
+  vim.api.nvim_put({ print_line }, "l", true, true)
+end, { desc = "Print expression debug" })
 ----------------------------------------------------
 --- Quarto and Markdown Stuff
 ----------------------------------------------------
