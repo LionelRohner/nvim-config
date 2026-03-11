@@ -29,7 +29,7 @@ vim.api.nvim_set_keymap(
 --- Python
 ----------------------------------------------------
 
--- Setup ToggleTerm variables
+-- Setup ToggleTerm split screens
 local Terminal = require("toggleterm.terminal").Terminal
 
 local python = Terminal:new({
@@ -104,7 +104,7 @@ vim.keymap.set("n", "<leader>üp", function()
   local print_line = indent .. string.format('print(f"%s : {%s}")', var, var)
 
   vim.api.nvim_put({ print_line }, "l", true, true)
-end, { desc = "Print variable debug" })
+end, { desc = "Print variable with name" })
 
 -- Simple f-print
 vim.keymap.set("n", "<leader>üo", function()
@@ -112,14 +112,17 @@ vim.keymap.set("n", "<leader>üo", function()
   local pos = vim.api.nvim_win_get_cursor(0)
   -- Get the current line
   local line = vim.api.nvim_get_current_line()
-  -- Surround the line with print()
-  local new_line = "print(" .. line .. ")"
+  -- Capture indentation
+  local indent = line:match("^(%s*)")
+  -- Surround the line with print(), preserving indentation
+  local new_line = indent .. "print(" .. line .. ")"
   -- Set the new line
   vim.api.nvim_set_current_line(new_line)
   -- Restore the cursor position (adjust column if needed)
-  vim.api.nvim_win_set_cursor(0, { pos[1], pos[2] + 6 }) -- +6 to account for 'print('
-end, { desc = "Surround line with Python print()" })
+  vim.api.nvim_win_set_cursor(0, { pos[1], pos[2] + 6 + #indent }) -- +6 to account for 'print('
+end, { desc = "Surround line print()" })
 
+-- f-print with line number
 vim.keymap.set("n", "<leader>üi", function()
   -- Get current line and cursor position
   local line = vim.api.nvim_get_current_line()
@@ -148,7 +151,7 @@ vim.keymap.set("n", "<leader>üi", function()
 
   -- Insert the print line below
   vim.api.nvim_put({ print_line }, "l", true, true)
-end, { desc = "Print expression debug" })
+end, { desc = "Print debug w line #" })
 ----------------------------------------------------
 --- Quarto and Markdown Stuff
 ----------------------------------------------------
