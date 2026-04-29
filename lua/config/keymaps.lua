@@ -56,6 +56,7 @@ vim.keymap.set("n", "<leader>üü", function()
 
   python:shutdown() -- kill previous job if running
   python.cmd = "poetry run python " .. file
+
   python:toggle()
 end, { desc = "Run Current Python File" })
 
